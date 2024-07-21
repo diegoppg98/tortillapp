@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:title="@string/title_home"
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/home"/>
+
+    <item
+        android:title="@string/title_contribute"
+        android:id="@+id/contributeFragment"
+        android:icon="@drawable/contribute"/>
+
+    <item
+        android:id="@+id/favoritesFragment"
+        android:icon="@drawable/favorite"
+        android:title="@string/title_favorites" />
+
+    <item
+        android:title="@string/title_profile"
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/profile"/>
+</menu>
