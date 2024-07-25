@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "731190481321",
+    "project_id": "tortillapp-ef64d",
+    "storage_bucket": "tortillapp-ef64d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:731190481321:android:8bcd4ce6f2a142f11034b8",
+        "android_client_info": {
+          "package_name": "com.diegoppg.tortillapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "731190481321-rfardapeb0lgrergt6e9o06b8cqrm2rn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.diegoppg.tortillapp",
+            "certificate_hash": "baf436aa1529d7bd4fafcabc0f8c570c09a8dc4a"
+          }
+        },
+        {
+          "client_id": "731190481321-m414sq10bp598t6f3t9d9cvb279qteb7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJgOHeRf3aWs5sBdeW1284DLU-_BJ_UwE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "731190481321-m414sq10bp598t6f3t9d9cvb279qteb7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
