@@ -2,7 +2,6 @@ package com.diegoppg.tortillapp;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -10,15 +9,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentContainerView;
 import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.diegoppg.tortillapp.databinding.ActivityMainBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -49,24 +43,21 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);
 
-        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().
-                findFragmentById(R.id.nav_host);
-        NavController navController = null;
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host);
+
         if (navHostFragment != null) {
-            navController = navHostFragment.getNavController();
+            NavController navController = navHostFragment.getNavController();
             NavigationUI.setupWithNavController(bottomNavigationView, navController);
         }
+    }
 
 
 
 
 
 
-/*
 
       //  FragmentContainerView navHost = findViewById(R.id.nav_host);
 
@@ -78,9 +69,9 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-*/
 
-    }
+
+
 
     private void addDataFirebase(){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -132,4 +123,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
+
+
 }

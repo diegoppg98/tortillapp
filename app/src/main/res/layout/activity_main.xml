@@ -32,21 +32,4 @@
 
 
 
-
-
-
-
-
-
-    <!--<com.google.android.gms.common.SignInButton
-        android:id="@+id/sign_in_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:layout_editor_absoluteX="24dp">
-
-    </com.google.android.gms.common.SignInButton>-->
-
 </androidx.constraintlayout.widget.ConstraintLayout>
