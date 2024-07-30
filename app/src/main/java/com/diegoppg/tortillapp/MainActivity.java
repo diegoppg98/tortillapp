@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -51,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
             NavController navController = navHostFragment.getNavController();
             NavigationUI.setupWithNavController(bottomNavigationView, navController);
         }
+
+        readDataFirebase();
     }
 
 
@@ -83,8 +86,6 @@ public class MainActivity extends AppCompatActivity {
         user.put("last", "Lovelace");
         user.put("born", 1815);
 
-
-
 // Add a new document with a generated ID
         db.collection("users")
                 .add(user)
@@ -101,6 +102,30 @@ public class MainActivity extends AppCompatActivity {
                         Log.w(TAG, "Error adding document", e);
                     }
                 });
+
+
+/*
+
+        Firestore db = FirestoreOptions.getDefaultInstance().getService();
+
+        // Example user
+        Usuario user = new Usuario(null, "example@example.com", "Example Name", "123 Example St", "path/to/photo.jpg");
+
+        // Convert to Firestore format and add to Firestore
+        Map<String, Object> userMap = UsuarioConverter.toFirestore(user);
+        ApiFuture<DocumentReference> addedDocRef = db.collection("usuarios").add(userMap);
+        System.out.println("Added document with ID: " + addedDocRef.get().getId());
+
+        // Fetch a document and convert back to Usuario
+        DocumentReference docRef = db.collection("usuarios").document("some-document-id");
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        DocumentSnapshot document = future.get();
+        Usuario fetchedUser = UsuarioConverter.fromFirestore(document);
+
+        if (fetchedUser != null) {
+            System.out.println("Fetched user: " + fetchedUser.getNombre());
+        }
+        */
     }
 
     private void readDataFirebase(){
@@ -116,12 +141,61 @@ public class MainActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
+                                User user = document.toObject(User.class);
+                                Log.d(TAG, user.first);
+                                Log.d(TAG, user.last);
+                                Log.d(TAG, String.valueOf(user.born));
                             }
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }
                     }
                 });
+    }
+
+    public class User {
+        public String first;
+        public String last;
+        public int born;
+    }
+
+    public class UsuarioConverter {
+
+        public Map<String, Object> toFirestore(Usuario usuario) {
+            Map<String, Object> data = new HashMap<>();
+            data.put("correo", usuario.correo);
+            data.put("nombre", usuario.nombre);
+            data.put("foto", usuario.foto);
+            return data;
+        }
+
+        public class Usuario {
+            private String id;
+            private String correo;
+            private String nombre;
+            private String foto;
+
+            public Usuario(String id, String correo, String nombre, String foto) {
+                this.id = id;
+                this.correo = correo;
+                this.nombre = nombre;
+                this.foto = foto;
+            }
+
+            // Add getters and setters if needed
+        }
+
+        public Usuario fromFirestore(DocumentSnapshot snapshot) {
+            if (snapshot.exists()) {
+                Map<String, Object> data = snapshot.getData();
+                String id = snapshot.getId();
+                String correo = (String) data.get("correo");
+                String nombre = (String) data.get("nombre");
+                String foto = (String) data.get("foto");
+                return new Usuario(id, correo, nombre, foto);
+            }
+            return null;
+        }
     }
 
 
