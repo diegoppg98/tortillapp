@@ -1,11 +1,14 @@
 package com.diegoppg.tortillapp;
 
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -24,8 +27,15 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.osmdroid.config.Configuration;
+import org.osmdroid.library.BuildConfig;
+import org.osmdroid.views.MapView;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.overlay.Marker;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);
 
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host);
@@ -53,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             NavigationUI.setupWithNavController(bottomNavigationView, navController);
         }
 
-        readDataFirebase();
+
     }
 
 
@@ -157,6 +166,12 @@ public class MainActivity extends AppCompatActivity {
         public String first;
         public String last;
         public int born;
+
+        public User(String first, String last, int born) {
+            this.first = first;
+            this.last = last;
+            this.born = born;
+        }
     }
 
     public class UsuarioConverter {

@@ -10,6 +10,17 @@ import android.view.ViewGroup;
 
 import com.diegoppg.tortillapp.R;
 
+import org.osmdroid.config.Configuration;
+import org.osmdroid.library.BuildConfig;
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.CustomZoomButtonsController;
+import org.osmdroid.views.MapView;
+import org.osmdroid.views.overlay.Marker;
+
+import java.io.File;
+
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link HomeFragment#newInstance} factory method to
@@ -29,6 +40,7 @@ public class HomeFragment extends Fragment {
     public HomeFragment() {
         // Required empty public constructor
     }
+
 
     /**
      * Use this factory method to create a new instance of
@@ -55,6 +67,12 @@ public class HomeFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
+
+
+
+
     }
 
     @Override
@@ -63,4 +81,34 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
+
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        // Configurar el almacenamiento de tiles
+        Configuration.getInstance().setUserAgentValue(BuildConfig.APPLICATION_ID);
+        File osmdroidBasePath = new File(requireActivity().getFilesDir(), "osmdroid");
+        if (!osmdroidBasePath.exists()) {
+            osmdroidBasePath.mkdirs();
+        }
+        Configuration.getInstance().setOsmdroidBasePath(osmdroidBasePath);
+        Configuration.getInstance().setOsmdroidTileCache(new File(osmdroidBasePath, "tiles"));
+
+        MapView mapView = requireView().findViewById(R.id.mapview);
+        mapView.setMultiTouchControls(true);
+      //  mapView.getZoomController().setVisibility(CustomZoomButtonsController.Visibility.ALWAYS);
+        mapView.setTileSource(TileSourceFactory.USGS_SAT);
+
+        GeoPoint startPoint = new GeoPoint(38.9072, -77.0369); // Coordenadas del marcador
+        mapView.getController().setZoom(15.0);
+        mapView.getController().setCenter(startPoint);
+
+        Marker marker = new Marker(mapView);
+        marker.setPosition(startPoint);
+        marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
+        mapView.getOverlays().add(marker);
+    }
+
+
+
 }

@@ -1,5 +1,5 @@
 [versions]
-agp = "8.3.2"
+agp = "8.5.1"
 credentials = "1.2.2"
 firebaseBom = "33.1.2"
 githubGlide = "4.16.0"
@@ -19,6 +19,7 @@ lifecycleLivedataKtx = "2.8.3"
 lifecycleViewmodelKtx = "2.8.3"
 navigationFragment = "2.7.7"
 navigationUi = "2.7.7"
+osmdroidOsmdroidAndroid = "6.1.2"
 playServicesAuth = "21.2.0"
 
 [libraries]
@@ -44,6 +45,7 @@ navigation-fragment = { group = "androidx.navigation", name = "navigation-fragme
 navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigationFragment" }
 navigation-ui = { group = "androidx.navigation", name = "navigation-ui", version.ref = "navigationUi" }
 navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigationFragment" }
+osmdroid-osmdroid-android = { module = "org.osmdroid:osmdroid-android", version.ref = "osmdroidOsmdroidAndroid" }
 play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "playServicesAuth" }
 
 [plugins]

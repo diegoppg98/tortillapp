@@ -52,8 +52,7 @@ dependencies {
     implementation (libs.github.glide)
 
 
-
-
+    implementation (libs.osmdroid.osmdroid.android)
 
 
     implementation(libs.navigation.fragment.ktx)
