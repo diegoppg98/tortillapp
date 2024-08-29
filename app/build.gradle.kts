@@ -39,6 +39,12 @@ android {
 
 dependencies {
 
+    //RecyclerView
+    implementation (libs.recyclerview)
+
+    //OSM
+    implementation (libs.osmdroid.osmdroid.android)
+    implementation (libs.mapsforge.mapsforge.map.android)
 
     //SIGN IN
     implementation (libs.credentials)
@@ -51,13 +57,8 @@ dependencies {
     implementation(libs.play.services.auth)
     implementation (libs.github.glide)
 
-
-    implementation (libs.osmdroid.osmdroid.android)
-
-
     implementation(libs.navigation.fragment.ktx)
     implementation(libs.navigation.ui.ktx)
-
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
